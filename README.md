@@ -1,3 +1,2 @@
-# my dot files
+# My dot files
 
-I am a lazy, I don't have setup script.
