@@ -6,9 +6,6 @@ Plug 'morhetz/gruvbox'
 Plug 'yukunlin/auto-pairs'
 Plug 'voldikss/vim-floaterm'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()  } } 
-Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " My Config ---------------------
@@ -23,11 +20,18 @@ set cursorline
 set t_Co=256
 colorscheme gruvbox
 syntax on
+
+" Mapping 
 inoremap jj <ESC>
 inoremap <C-s> <ESC>:w<CR>
 noremap so :source %
 noremap cmd q:i
 noremap qa <ESC>:qa<CR>
+noremap <TAB> <ESC>:bnext<CR>
+
+" Changing the cursor shape
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 " Coc Config ---------------------
 
@@ -67,10 +71,20 @@ let g:floaterm_keymap_toggle = '<C-t>'
 
 "vim-airline ------------------
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 "Always showtabline
 set showtabline=2
 
+" inactive window
+let g:airline_inactive_collapse=1
+
+"powerline fonts
+let g:airline_powerline_fonts = 1
+
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+
+" disable per-buffer
+" let b:airline_disable_statusline = 1
 
 " Note: You must define the dictionary first before setting values.
 " Also, it's a good idea to check whether it exists as to avoid
@@ -81,10 +95,10 @@ if !exists('g:airline_symbols')
 endif
 
 " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
