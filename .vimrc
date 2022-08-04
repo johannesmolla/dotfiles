@@ -28,6 +28,7 @@ noremap so :source %
 noremap cmd q:i
 noremap qa <ESC>:qa<CR>
 noremap <TAB> <ESC>:bnext<CR>
+noremap <C-t> <ESC>:FloatermNew --width=0.9 --height=0.8 --title=* --borderchars=*<CR>
 
 " Changing the cursor shape
 let &t_SI = "\e[6 q"
@@ -66,8 +67,8 @@ set rtp+=~/projects/coc.nvim/
 
 " Coc Config end ---------------------
 
-"Float Terminal ------------------
-let g:floaterm_keymap_toggle = '<C-t>'
+" Float Terminal ------------------
+" let g:floaterm_keymap_toggle = '<C-t>'
 
 "vim-airline ------------------
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -75,13 +76,11 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 "Always showtabline
 set showtabline=2
 
-" inactive window
-let g:airline_inactive_collapse=1
-
 "powerline fonts
 let g:airline_powerline_fonts = 1
 
-let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1 
 
 " disable per-buffer
 " let b:airline_disable_statusline = 1
@@ -101,8 +100,8 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.linenr = ' ☰ '
+let g:airline_symbols.maxlinenr = '  '
 let g:airline_symbols.dirty='⚡'
 
 " If you only see boxes here it may be because your system doesn't have
