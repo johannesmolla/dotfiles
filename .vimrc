@@ -115,3 +115,8 @@ let g:airline_experimental=1
 noremap <C-n> <ESC>:NERDTreeToggle<CR>
 
 " Status line
+
+
+" Coc-Prettier
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+noremap pr <ESC>:Prettier<CR>
