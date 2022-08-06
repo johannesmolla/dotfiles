@@ -1,3 +1,9 @@
+# command not found
+. /data/data/com.termux/files/usr/etc/profile
+command_not_found_handler() {
+	/data/data/com.termux/files/usr/libexec/termux/command-not-found $1
+}
+
 #set nomatch so *.sh would not error if no file is available
 setopt +o nomatch
 . /data/data/com.termux/files/usr/etc/profile
@@ -14,7 +20,7 @@ zstyle ':vcs_info:git:*' formats ' %b '
 
 # Promt
 setopt prompt_subst
-PS1='%F{green}:: %B%F{yello}%1d%F{red} %%%F{cyan}${vcs_info_msg_0_} '
+PS1='%B%F{yello}%1~%F{red} >%F{cyan}${vcs_info_msg_0_} '
 
 # source files
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -34,17 +40,18 @@ zstyle ':completion:*' completer _extensions _complete _approximate
 
 zstyle ':completion:*' group-name ''
 
-#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # alias ----------------
-alias ll="ls -lh"
-alias la="ls -a"
+alias ll="~/go/bin/./logo-ls -lh"
+alias la="~/go/bin/./logo-ls -a"
 alias h="cd"
 alias rf="rm -rf"
 alias rm="rm -i"
 alias e="vim"
-alias c="clear"
 alias py="python3"
 alias grep="grep --color=auto"
 alias relo="source ~/.zshrc"
+alias :q="exit"
+alias ls="~/go/bin/./logo-ls"
+alias cat="bat"
+alias vimnrc="vim -u NONE -N"
+alias server="py -m http.server"
