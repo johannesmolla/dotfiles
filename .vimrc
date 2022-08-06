@@ -10,7 +10,6 @@ call plug#end()
 
 " My Config ---------------------
 set number
-set relativenumber
 set numberwidth=3
 set shiftwidth=4
 set encoding=utf-8
@@ -18,6 +17,7 @@ set background=dark
 set noshowmode
 set cursorline
 set t_Co=256
+" set spell
 colorscheme gruvbox
 syntax on
 
@@ -26,9 +26,9 @@ inoremap jj <ESC>
 inoremap <C-s> <ESC>:w<CR>
 noremap so :source %
 noremap cmd q:i
-noremap qa <ESC>:qa<CR>
 noremap <TAB> <ESC>:bnext<CR>
 noremap <C-t> <ESC>:FloatermNew --width=0.9 --height=0.8 --title=* --borderchars=*<CR>
+inoremap <C-c> <C-x><C-s>
 
 " Changing the cursor shape
 let &t_SI = "\e[6 q"
@@ -101,7 +101,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ' ☰ '
-let g:airline_symbols.maxlinenr = '  '
+let g:airline_symbols.maxlinenr = ' c '
 let g:airline_symbols.dirty='⚡'
 
 " If you only see boxes here it may be because your system doesn't have
@@ -114,5 +114,4 @@ let g:airline_experimental=1
 " NERDTree -------------------
 noremap <C-n> <ESC>:NERDTreeToggle<CR>
 
-" fzf ------------------------
-noremap <C-f> <ESC>:Files<CR>
+" Status line
