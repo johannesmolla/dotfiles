@@ -15,24 +15,26 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdtree'
-Plug 'morhetz/gruvbox'
 Plug 'yukunlin/auto-pairs'
 Plug 'voldikss/vim-floaterm'
-Plug 'vim-airline/vim-airline'
+Plug 'tomasiser/vim-code-dark'
+Plug 'chrisbra/vim-commentary'
+Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
 
 
 """""""""""""""""""""""""" My Config
 set number
+set relativenumber
 set numberwidth=1
 set encoding=utf-8
 set background=dark
 set cursorline
 set t_Co=256
 set spell
-colorscheme gruvbox
+"colorscheme codedark
+colorscheme abstract
 syntax on
 " You can split a window into sections by typing `:split` or `:vsplit`.
 " Display cursorline and cursorcolumn ONLY in active window.
@@ -76,8 +78,6 @@ set ignorecase
 " Override the ignorecase option if searching for capital letters.
 " This will allow you to search specifically for capital letters.
 set smartcase
-" Show partial command you type in the last line of the screen.
-set showcmd
 " While searching though a file incrementally highlight matching characters as you type.
 set incsearch
 " Ignore capital letters during search.
@@ -85,20 +85,22 @@ set ignorecase
 " Override the ignorecase option if searching for capital letters.
 " This will allow you to search specifically for capital letters.
 set smartcase
-" Show partial command you type in the last line of the screen.
-set showcmd
-" Show the mode you are on the last line.
-set showmode
 " Show matching words during a search.
 set showmatch
-" Use highlighting when doing a search.
-set hlsearch
 
 
 
-""""""""""""""""""""""""" Key Mapping 
-inoremap <C-c> <C-x><C-s>
-let mapleader = "-"
+""""""""""""""""""""""" highlighting
+hi Search cterm=bold ctermbg=229 ctermfg=black
+hi CocFloating cterm=bold ctermbg=black ctermfg=white
+hi CocHighlightWrite cterm=bold ctermbg=lightgreen ctermfg=black 
+hi SpellBad ctermbg=red ctermfg=white
+hi SignColumn ctermbg=black
+
+
+
+"""""""""""""""""""""" Key Mapping 
+let mapleader = " "
 inoremap jj <ESC>
 inoremap <C-s> <ESC>:w<CR>
 noremap so :source %
@@ -108,7 +110,7 @@ noremap <C-t> <ESC>:FloatermNew --width=0.9 --height=0.8 --title=* --borderchars
 nnoremap py :w <CR>:!clear <CR>:!python3 % <CR>
 noremap <leader>h :nohlsearch<CR>
 inoremap <C-w> <ESC>:wq<CR>
-noremap <C-x> :q<CR>
+noremap <C-q> :q<CR>
 " You can split the window in Vim by typing :split or :vsplit.
 " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
 nnoremap <c-j> <c-w>j
@@ -124,48 +126,47 @@ let &t_EI = "\e[2 q"
 
 
 
-"""""""""""""""""""""""""" vim-airline
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+"""""""""""""""""""""""""" StatusLine
+set laststatus=2
+set statusline=
+set statusline+=%2*
+set statusline+=\ 
+set statusline+=%{StatuslineMode()}
+set statusline+=%1*
+set statusline+=\  
+set statusline+=\ 
+set statusline+=%f
+set statusline+=\ 
+set statusline+=%*
+set statusline+=%=
+set statusline+=%3*
+set statusline+=\ 
+set statusline+=%{strlen(&fenc)?&fenc:'none'} "file encoding
+set statusline+=\ 
+hi User1 ctermbg=white ctermfg=black guibg=black guifg=white
+hi User2 ctermbg=lightgreen ctermfg=black guibg=lightgreen guifg=black
+hi User3 ctermbg=lightgreen ctermfg=black guibg=black guifg=lightgreen
 
-"Always showtabline
-set showtabline=2
-
-"powerline fonts
-let g:airline_powerline_fonts = 1
-
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1 
-
-" Note: You must define the dictionary first before setting values.
-" Also, it's a good idea to check whether it exists as to avoid
-" accidentally overwriting its contents.
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ' ☰ '
-let g:airline_symbols.maxlinenr = ' c '
-let g:airline_symbols.dirty='⚡'
-
-" If you only see boxes here it may be because your system doesn't have
-" the correct fonts. Try it in vim first and if that fails see the help
-" pages for vim-airline :help airline-troubleshootingsso
-
-" Speed up airline
-let g:airline_experimental=1
-
-
-
-"""""""""""""""""""""""""" NERDTree
-noremap <C-n> <ESC>:NERDTreeToggle<CR>
+function! StatuslineMode()
+  let l:mode=mode()
+  if l:mode==#"n"
+    return "NORMAL"
+  elseif l:mode==?"v"
+    return "VISUAL"
+  elseif l:mode==#"i"
+    return "INSERT"
+  elseif l:mode==#"R"
+    return "REPLACE"
+  elseif l:mode==?"s"
+    return "SELECT"
+  elseif l:mode==#"t"
+    return "TERMINAL"
+  elseif l:mode==#"c"
+    return "COMMAND"
+  elseif l:mode==#"!"
+    return "SHELL"
+  endif
+endfunction
 
 
 
