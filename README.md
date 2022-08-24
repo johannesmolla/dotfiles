@@ -2,4 +2,4 @@
 
 <!-- Comment goes here -->
 
-I don't have a script to setup.
+I am using Termux ...

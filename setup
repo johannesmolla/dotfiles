@@ -7,7 +7,7 @@ echo "Script start ... "
 # Change directory to HOME
 cd $HOME
 
-# Check if zsh is install on your termux
+# Check if zsh is installed on your termux
 ls $PREFIX/bin/ | grep "zsh" > /dev/null
 if [ $? == 0 ] 
 then

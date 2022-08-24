@@ -96,6 +96,7 @@ hi CocFloating cterm=bold ctermbg=black ctermfg=white
 hi CocHighlightWrite cterm=bold ctermbg=lightgreen ctermfg=black 
 hi SpellBad ctermbg=red ctermfg=white
 hi SignColumn ctermbg=black
+hi CursorLineNr cterm=bold ctermfg=white
 
 
 
