@@ -24,24 +24,31 @@ Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
-Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 call plug#end()
 
 
 
 """""""""""""""""""""""""" My Config
+" Set number line
 set number
+" Set relativenumber to make number relati e to the cursorline
 set relativenumber
+" Set number width
 set numberwidth=4
+" I didn't like the column
 set signcolumn=no
+" Set noshowmode
 set noshowmode
+" Set encoding to utf-8
 set encoding=utf-8
+" Set background color
 set background=dark
+" Set cursorline line on
 set cursorline
+" Set colors to 8 bit
 set t_Co=256
-set lcs=tab:>\ ,trail:-
-" set spell
+" set colorschemes 
 colorscheme gruvbox
 syntax on
 " You can split a window into sections by typing `:split` or `:vsplit`.
@@ -258,7 +265,7 @@ noremap pr <ESC>:Prettier<CR>
 
 
 
-" test autocmd 
+" For c files add extra line code which is found in .vim/c_header 
 autocmd bufnewfile *.c so ~/.vim/c_header.txt
 
 
