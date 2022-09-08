@@ -20,6 +20,12 @@ Plug 'voldikss/vim-floaterm'
 Plug 'tomasiser/vim-code-dark'
 Plug 'chrisbra/vim-commentary'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 
@@ -27,14 +33,16 @@ call plug#end()
 """""""""""""""""""""""""" My Config
 set number
 set relativenumber
-set numberwidth=1
+set numberwidth=4
+set signcolumn=no
+set noshowmode
 set encoding=utf-8
 set background=dark
 set cursorline
 set t_Co=256
-set spell
-"colorscheme codedark
-colorscheme abstract
+set lcs=tab:>\ ,trail:-
+" set spell
+colorscheme gruvbox
 syntax on
 " You can split a window into sections by typing `:split` or `:vsplit`.
 " Display cursorline and cursorcolumn ONLY in active window.
@@ -62,9 +70,9 @@ filetype plugin on
 " Use space characters instead of tabs.
 set expandtab
 " Set shift width to 4 spaces.
-set shiftwidth=4
+set shiftwidth=2
 " Set tab width to 4 columns.
-set tabstop=4
+set tabstop=2
 " Use space characters instead of tabs.
 set expandtab
 " Do not save backup files.
@@ -87,16 +95,18 @@ set ignorecase
 set smartcase
 " Show matching words during a search.
 set showmatch
-
-
+" Highlight search
+set hlsearch
 
 """"""""""""""""""""""" highlighting
 hi Search cterm=bold ctermbg=229 ctermfg=black
 hi CocFloating cterm=bold ctermbg=black ctermfg=white
 hi CocHighlightWrite cterm=bold ctermbg=lightgreen ctermfg=black 
-hi SpellBad ctermbg=red ctermfg=white
-hi SignColumn ctermbg=black
-hi CursorLineNr cterm=bold ctermfg=white
+" hi SpellBad ctermbg=red ctermfg=white
+hi SignColumn ctermbg=0
+"hi CursorLineNr cterm=bold ctermfg=white
+hi Number ctermfg=white
+hi Comment cterm=bold ctermfg=0 "ctermbg=229
 
 
 
@@ -107,67 +117,29 @@ inoremap <C-s> <ESC>:w<CR>
 noremap so :source %
 noremap cmd q:i
 noremap <TAB> <ESC>:bnext<CR>
-noremap <C-t> <ESC>:FloatermNew --width=0.9 --height=0.8 --title=* --borderchars=*<CR>
+noremap <C-t> <ESC>:FloatermNew --width=0.9 --height=0.8 --title=-<CR>
 nnoremap py :w <CR>:!clear <CR>:!python3 % <CR>
 noremap <leader>h :nohlsearch<CR>
 inoremap <C-w> <ESC>:wq<CR>
 noremap <C-q> :q<CR>
+noremap <space>e <ESC>:NERDTreeToggle<CR>
 " You can split the window in Vim by typing :split or :vsplit.
 " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+" correcting spell with z+
+nnoremap zz 1z=
+inoremap zz <ESC>1z=<CR>i
+" tagbar
+nmap <space>t :TagbarToggle<CR>
 
 
 
 """""""""""""""""""""""""" Changing the cursor shape
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
-
-
-
-"""""""""""""""""""""""""" StatusLine
-set laststatus=2
-set statusline=
-set statusline+=%2*
-set statusline+=\ 
-set statusline+=%{StatuslineMode()}
-set statusline+=%1*
-set statusline+=\  
-set statusline+=\ 
-set statusline+=%f
-set statusline+=\ 
-set statusline+=%*
-set statusline+=%=
-set statusline+=%3*
-set statusline+=\ 
-set statusline+=%{strlen(&fenc)?&fenc:'none'} "file encoding
-set statusline+=\ 
-hi User1 ctermbg=white ctermfg=black guibg=black guifg=white
-hi User2 ctermbg=lightgreen ctermfg=black guibg=lightgreen guifg=black
-hi User3 ctermbg=lightgreen ctermfg=black guibg=black guifg=lightgreen
-
-function! StatuslineMode()
-  let l:mode=mode()
-  if l:mode==#"n"
-    return "NORMAL"
-  elseif l:mode==?"v"
-    return "VISUAL"
-  elseif l:mode==#"i"
-    return "INSERT"
-  elseif l:mode==#"R"
-    return "REPLACE"
-  elseif l:mode==?"s"
-    return "SELECT"
-  elseif l:mode==#"t"
-    return "TERMINAL"
-  elseif l:mode==#"c"
-    return "COMMAND"
-  elseif l:mode==#"!"
-    return "SHELL"
-  endif
-endfunction
 
 
 
@@ -179,10 +151,6 @@ set nowritebackup
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -287,3 +255,36 @@ endif
 " Coc-Prettier
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 noremap pr <ESC>:Prettier<CR>
+
+
+
+" test autocmd 
+autocmd bufnewfile *.c so ~/.vim/c_header.txt
+
+
+
+" NERDTree
+let g:NERDTreeDirArrowExpandable = '┃'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+
+
+" IndentLineChar
+let g:indentLine_char = '┃'
+
+
+
+" LightLine
+let g:lightline = {
+\ 'colorscheme': 'powerline',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+\   'right': [ [ 'lineinfo'], [ 'percent' ] ]
+\ },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead'
+\ }
+\ }
