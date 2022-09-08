@@ -1,11 +1,4 @@
 # Command history tweaks:
-# - Append history instead of overwriting
-#   when shell exits.
-# - When using history substitution, do not
-#   exec command immediately.
-# - Do not save to history commands starting
-#   with space.
-# - Do not save duplicated commands.
 shopt -s histappend
 shopt -s histverify
 export HISTCONTROL=ignoreboth
