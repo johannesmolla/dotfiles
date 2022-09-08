@@ -22,10 +22,11 @@ fi
 mv .vimrc .old-vimrc
 mv .zshrc .old-zshrc
 mv .tmux.conf .old-tmux-conf
+mv .bashrc .old-bashrc
 
 # Back to dotfile directory
 cd - > /dev/null
-cp -rf .vimrc .zshrc .tmux.conf $HOME/
+cp -rf .vimrc .zshrc .tmux.conf .bashrc $HOME/
 
 # Goodbye message
 echo "Script Finished :-)"
