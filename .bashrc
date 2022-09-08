@@ -14,8 +14,7 @@ PROMPT_DIRTRIM=2
 PS1="${green}┌──${noColor}(${blue}\W${noColor}) ${yello}\t${noColor}\n${green}└─${noColor}$ "
 
 # Handles nonexistent commands.
-# If user has entered command which invokes non-available
-# utility, command-not-found will give a package suggestions.
+ utility, command-not-found will give a package suggestions.
 if [ -x /data/data/com.termux/files/usr/libexec/termux/command-not-found ]; then
 	command_not_found_handle() {
 		/data/data/com.termux/files/usr/libexec/termux/command-not-found "$1"
@@ -39,14 +38,14 @@ alias vimnorc="vim -u NONE"
 alias py="python"
 alias c="cd"
 
-# set vi mod
+# Set vi mod
 set -o vi
 
-# personal path 
+# Personal path 
 PATH=$PATH:$HOME/programs/bin
 PATH=$PATH:$HOME../usr/opt/go/bin
 PATH=$PATH:$HOME/.cargo/bin
 
-# gopaths
+# Go paths
 export GOPATH="/data/data/com.termux/files/usr/opt/go"
 export GOMODCACHE="/data/data/com.termux/files/usr/opt/go/pkg/mod"
