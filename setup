@@ -7,26 +7,14 @@ echo "Script start ... "
 # Change directory to HOME
 cd $HOME
 
-# Check if zsh is installed on your termux
-ls $PREFIX/bin/ | grep "zsh" > /dev/null
-if [ $? == 0 ] 
-then
-    echo "Lucky, zsh is installed"
-else
-    echo "zsh is not installed, let's install it ..."
-    pkg update && pkg upgrade
-    pkg install zsh
-fi
-
 # Move old files
 mv .vimrc .old-vimrc
-mv .zshrc .old-zshrc
 mv .tmux.conf .old-tmux-conf
 mv .bashrc .old-bashrc
 
 # Back to dotfile directory
 cd - > /dev/null
-cp -rf .vimrc .zshrc .tmux.conf .bashrc $HOME/
+cp -rf .vimrc .tmux.conf .bashrc $HOME/
 
 # Goodbye message
 echo "Script Finished :-)"

@@ -11,10 +11,10 @@ blue="\e[34m"
 
 # Default command line prompt.
 PROMPT_DIRTRIM=2
-PS1="${green}┌──${noColor}(${blue}\W${noColor}) ${yello}\t${noColor}\n${green}└─${noColor}$ "
+PS1="${green}\W ${noColor}$ "
 
 # Handles nonexistent commands.
- utility, command-not-found will give a package suggestions.
+# utility, command-not-found will give a package suggestions.
 if [ -x /data/data/com.termux/files/usr/libexec/termux/command-not-found ]; then
 	command_not_found_handle() {
 		/data/data/com.termux/files/usr/libexec/termux/command-not-found "$1"
