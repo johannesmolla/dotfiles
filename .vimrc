@@ -37,7 +37,7 @@ set relativenumber
 " Set number width
 set numberwidth=4
 " I didn't like the column
-set signcolumn=no
+set signcolumn=yes
 " Set noshowmode
 set noshowmode
 " Set encoding to utf-8
@@ -271,15 +271,15 @@ autocmd bufnewfile *.c so ~/.vim/c_header.txt
 
 
 " NERDTree
-let g:NERDTreeDirArrowExpandable = '┃'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 
 
 " IndentLineChar
-let g:indentLine_char = '┃'
+let g:indentLine_char = '▏'
 
 
 
