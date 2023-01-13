@@ -13,6 +13,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 "- Some config
@@ -93,6 +94,13 @@ nnoremap zz 1z=
 inoremap zz <ESC>1z=<CR>i
 nmap <space>t :TagbarToggle<CR>
 
+"- Prettier
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+"- Rainbow
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 "- Changing the cursor shape
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -122,13 +130,6 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
 "- For c files add extra line code which is found in .vim/c_header 
 
 autocmd bufnewfile *.c so ~/.vim/c_header.txt
@@ -157,3 +158,4 @@ let g:lightline = {
 \   'gitbranch': 'FugitiveHead'
 \ }
 \ }
+
