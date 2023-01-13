@@ -60,14 +60,15 @@ set hlsearch
 
 hi Search cterm=bold ctermfg=223 ctermbg=239
 hi CocHighlightWrite cterm=bold ctermbg=lightgreen ctermfg=239 
-hi SignColumn ctermfg=229 ctermbg=0
+hi SignColumn ctermbg=235
 hi CursorLineNr cterm=bold ctermfg=white
 hi Number ctermfg=white
 hi Comment cterm=bold ctermfg=0 "ctermbg=229
 hi Visual cterm=bold ctermfg=223 ctermbg=239
-hi CocHintSign ctermfg=0 "ctermbg=229
+hi CocHintSign ctermfg=0 ctermbg=229
 hi CocFloating cterm=bold ctermfg=white ctermbg=235
 hi CocHintFloat ctermfg=white ctermbg=0
+hi CocInlayHint ctermfg=white ctermbg=0
 
 "- Key Mapping 
 
